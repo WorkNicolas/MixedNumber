@@ -2,10 +2,8 @@ import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Fraction  {
-    protected BigInteger num;
-    protected BigInteger dem;
-    public static final BigInteger NEGATIVEONE = new BigInteger("-1");
-
+    protected int num = 0;
+    protected int den = 1;
     public static void main(String[] args) {
         if (args.length == 1) {
             if ("class".equals(args[0])) {
@@ -28,13 +26,13 @@ public class Fraction  {
                 } else {
                     System.out.print("Enter second fraction (c d): ");
                 }
-                BigInteger numerator,
+                int numerator,
                         denominator;
                 try {
-                    numerator = sc.nextBigInteger();
-                    denominator = sc.nextBigInteger();
+                    numerator = sc.nextInt();
+                    denominator = sc.nextInt();
 
-                    if (denominator.equals(BigInteger.ZERO)) {
+                    if (denominator == 0) {
                         throw new ArithmeticException();
                     }
                 } catch (Exception e) {
@@ -103,45 +101,39 @@ public class Fraction  {
         main(args);
     }
 
-    //Constructor
-    public Fraction(){}
-
-    // Class behavior here
-    public Fraction(BigInteger num, BigInteger dem) throws ArithmeticException {
-        if (dem.equals(BigInteger.ZERO)) {
-            throw new ArithmeticException();
-        }
-
+    public Fraction(){
+    }
+    public Fraction(int num, int den){
         this.num = num;
-        this.dem = dem;
+        this.den = den;
         this.simplify();
     }
 
     public static Fraction simplify(Fraction f) {
-        BigInteger gcd = f.num.gcd(f.dem);
-        BigInteger num = f.num.divide(gcd);
-        BigInteger dem = f.dem.divide(gcd);
-        return new Fraction(num, dem);
+        int gcd = BigInteger.valueOf(f.num).gcd(BigInteger.valueOf(f.den)).intValue();
+        int num = f.num / gcd;
+        int den = f.den / gcd;
+        return new Fraction(num, den);
     }
 
     public static void exampleInstance() {
-        BigInteger c = new BigInteger("3");
-        BigInteger d = new BigInteger("4");
-        Fraction fraction1 = new Fraction(BigInteger.ONE, BigInteger.TWO);
+        int c = 3;
+        int d = 4;
+        Fraction fraction1 = new Fraction(1, 2);
         Fraction fraction2 = new Fraction(c, d);
 
         fraction1.add(fraction2); // makes the value of fraction1 as 5/4.
         System.out.println("1/2 + 3/4 = " + fraction1);
 
-        fraction1 = new Fraction(BigInteger.ONE, BigInteger.TWO);
+        fraction1 = new Fraction(1, 2);
         fraction1.subtract(fraction2); // makes the value of fraction1 as -1/4.
         System.out.println("1/2 - 3/4 = " + fraction1);
 
-        fraction1 = new Fraction(BigInteger.ONE, BigInteger.TWO);
+        fraction1 = new Fraction(1, 2);
         fraction1.multiply(fraction2); // makes the value of fraction1 as 3/8.
         System.out.println("1/2 * 3/4 = " + fraction1);
 
-        fraction1 = new Fraction(BigInteger.ONE, BigInteger.TWO);
+        fraction1 = new Fraction(1, 2);
         fraction1.divide(fraction2); // makes the value of fraction1 as 2/3.
         System.out.println("1/2 / 3/4 = " + fraction1);
 
@@ -151,31 +143,31 @@ public class Fraction  {
 
     // Class-based operations
     // Prepares two fractions for an add/subtract/comparison operation by providing their scaled equivalents.
-    public static BigInteger[] operation(Fraction f1, Fraction f2) {
-        BigInteger[] packed = {
-                f1.getNumerator().multiply(f2.getDenominator()),
-                f2.getNumerator().multiply(f1.getDenominator()),
-                f1.getDenominator().multiply(f2.getDenominator())
+    public static int[] operation(Fraction f1, Fraction f2) {
+        int[] packed = {
+                f1.getNumerator() * f2.getDenominator(),
+                f2.getNumerator() * f1.getDenominator(),
+                f1.getDenominator() * f2.getDenominator()
         };
         return packed;
     }
 
     public static Fraction subtract(Fraction f1, Fraction f2) {
-        BigInteger[] v = operation(f1, f2);
+        int[] v = operation(f1, f2);
 
-        return new Fraction(v[0].subtract(v[1]), v[2]);
+        return new Fraction(v[0] - v[1], v[2]);
     }
 
     // Creates a new fraction by adding two existing ones.
     public static Fraction add(Fraction f1, Fraction f2) {
-        BigInteger[] v = operation(f1, f2);
-        return new Fraction(v[0].add(v[1]), v[2]);
+        int[] v = operation(f1, f2);
+        return new Fraction(v[0] + (v[1]), v[2]);
     }
 
     public static Fraction multiply(Fraction f1, Fraction f2) {
         return new Fraction(
-                f1.getNumerator().multiply(f2.num),
-                f1.getDenominator().multiply(f2.dem));
+                f1.getNumerator() * f2.num,
+                f1.getDenominator() *f2.den );
     }
 
     public static Fraction divide(Fraction f1, Fraction f2) {
@@ -189,8 +181,8 @@ public class Fraction  {
      * compare equality of numerators
      */
     public static int compareTo(Fraction f1, Fraction f2) {
-        BigInteger[] v = Fraction.operation(f1, f2);
-        return v[0].compareTo(v[1]);
+        int[] v = Fraction.operation(f1, f2);
+        return Integer.compare(v[0], v[1]);
     }
 
     public static boolean greaterThan(Fraction f1, Fraction f2) {
@@ -223,16 +215,16 @@ public class Fraction  {
     }
 
     // Getters
-    public BigInteger getNumerator() {
+    public int getNumerator() {
         return this.num;
     }
 
-    public BigInteger getDenominator() {
-        return this.dem;
+    public int getDenominator() {
+        return this.den;
     }
 
     // Setters
-    private void setNumerator(BigInteger n) {
+    protected void setNumerator(int n) {
         this.num = n;
     }
 
@@ -241,39 +233,36 @@ public class Fraction  {
      * 1/-5 == -1/5
      * @param n
      */
-    private void setDenominator(BigInteger n) {
-        if (n.equals(BigInteger.ZERO)) {
+    protected void setDenominator(int n) {
+        if (n == 0) {
             throw new ArithmeticException();
         }
 
-        if (n.compareTo(BigInteger.ZERO) == -1) {
+        if (n < 0) {
             setNumerator(
-                this.num.multiply(NEGATIVEONE)
+                this.num * -1
             );
-            n = n.multiply(NEGATIVEONE);
+            n *= -1;
         }
 
-        this.dem = n;
+        this.den = n;
     }
 
     // Outputs
     public String toString() {
-        if (dem.equals(BigInteger.ZERO)) {
+        if (den == 0) {
             return "undefined";
-        } else if (num.equals(dem)) {
-            return "1";
-        } else if (dem.equals(BigInteger.ONE)) {
-            return num.toString();
+        } else if (this.isWholeNumber()) {
+            return "" + (num / den);
         } 
-
-        return num + "/" + dem;
+        return num + "/" + den;
     }
 
     public static void exampleClass() {
-        BigInteger c = new BigInteger("3");
-        BigInteger d = new BigInteger("4");
+        int c = 3;
+        int d = 4;
 
-        Fraction fraction1 = new Fraction(BigInteger.ONE, BigInteger.TWO);
+        Fraction fraction1 = new Fraction(1, 2);
         Fraction fraction2 = new Fraction(c, d);
         Fraction fractionSum = Fraction.add(fraction1, fraction2); // creates 5/4.
         Fraction fractionDifference = Fraction.subtract(fraction1, fraction2); // creates 1/4.
@@ -307,17 +296,16 @@ public class Fraction  {
     }
 
     public Fraction reciprocal() {
-        return new Fraction(this.dem, this.num);
+        return new Fraction(this.den, this.num);
     }
 
-    private void update(BigInteger num, BigInteger dem) {
+    protected void update(int num, int den) {
         setNumerator(num);
-        setDenominator(dem);
-        simplify();
+        setDenominator(den);
     }
 
-    private void update(Fraction f) {
-        this.update(f.num, f.dem);
+    protected void update(Fraction f) {
+        this.update(f.num, f.den);
     }
 
     /**
@@ -325,10 +313,16 @@ public class Fraction  {
      * Can't use the static method as it will cause a stackoveflow.
      */
     public void simplify() {
-        BigInteger gcd = this.num.gcd(this.dem);
+        int gcd = BigInteger.valueOf(this.num).gcd(BigInteger.valueOf(this.den)).intValue();
         this.update(
-            this.num.divide(gcd),
-            this.dem.divide(gcd)
+            this.num /gcd,
+            this.den /gcd
         );
+    }
+    public boolean isOne() {
+        return num == den;
+    }
+    public boolean isWholeNumber() {
+        return num % den == 0;
     }
 }
