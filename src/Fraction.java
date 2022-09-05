@@ -1,9 +1,10 @@
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class Fraction  {
+public class Fraction {
     protected int num = 0;
     protected int den = 1;
+
     public static void main(String[] args) {
         if (args.length == 1) {
             if ("class".equals(args[0])) {
@@ -101,11 +102,12 @@ public class Fraction  {
         main(args);
     }
 
-    public Fraction(){
+    public Fraction() {
     }
-    public Fraction(int num, int den){
-        this.num = num;
-        this.den = den;
+
+    public Fraction(Number num, Number den) {
+        this.num = num.intValue();
+        this.den = den.intValue();
         this.simplify();
     }
 
@@ -142,7 +144,8 @@ public class Fraction  {
     }
 
     // Class-based operations
-    // Prepares two fractions for an add/subtract/comparison operation by providing their scaled equivalents.
+    // Prepares two fractions for an add/subtract/comparison operation by providing
+    // their scaled equivalents.
     public static int[] operation(Fraction f1, Fraction f2) {
         int[] packed = {
                 f1.getNumerator() * f2.getDenominator(),
@@ -167,7 +170,7 @@ public class Fraction  {
     public static Fraction multiply(Fraction f1, Fraction f2) {
         return new Fraction(
                 f1.getNumerator() * f2.num,
-                f1.getDenominator() *f2.den );
+                f1.getDenominator() * f2.den);
     }
 
     public static Fraction divide(Fraction f1, Fraction f2) {
@@ -197,7 +200,7 @@ public class Fraction  {
         return compareTo(f1, f2) == -1;
     }
 
-// Instance behavior here
+    // Instance behavior here
     public int compareTo(Fraction f) {
         return compareTo(this, f);
     }
@@ -231,6 +234,7 @@ public class Fraction  {
     /**
      * Note must keep negative sign in the numerator;
      * 1/-5 == -1/5
+     * 
      * @param n
      */
     protected void setDenominator(int n) {
@@ -240,8 +244,7 @@ public class Fraction  {
 
         if (n < 0) {
             setNumerator(
-                this.num * -1
-            );
+                    this.num * -1);
             n *= -1;
         }
 
@@ -254,7 +257,7 @@ public class Fraction  {
             return "undefined";
         } else if (this.isWholeNumber()) {
             return "" + (num / den);
-        } 
+        }
         return num + "/" + den;
     }
 
@@ -315,13 +318,14 @@ public class Fraction  {
     public void simplify() {
         int gcd = BigInteger.valueOf(this.num).gcd(BigInteger.valueOf(this.den)).intValue();
         this.update(
-            this.num /gcd,
-            this.den /gcd
-        );
+                this.num / gcd,
+                this.den / gcd);
     }
+
     public boolean isOne() {
         return num == den;
     }
+
     public boolean isWholeNumber() {
         return num % den == 0;
     }
