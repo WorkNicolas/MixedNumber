@@ -14,7 +14,6 @@
  */
 public class MixedNumber extends Fraction {
     protected int whole = 0;
-    protected double decimal;
 
     /*
      * #1
@@ -26,9 +25,14 @@ public class MixedNumber extends Fraction {
         this.update(f);
     }
 
-    public MixedNumber(long num, long den) {
+    public MixedNumber(Number num, Number den) {
         super();
+        this.update(num.intValue(), den.intValue());
+    }
 
+    public MixedNumber(Number whole, Number num, Number den) {
+        this(whole);
+        this.add(new Fraction(num.intValue(), den.intValue()));
     }
 
     // get whole number from float
@@ -39,6 +43,13 @@ public class MixedNumber extends Fraction {
     private int getWhole(MixedNumber mn) {
         return this.whole;
     }
+
+    // get num and den from mn
+    /*
+     * private int getNum(MixedNumber m) {
+     * 
+     * }
+     */
 
     // Decimal to Fraction
     public Fraction decimalToFraction(float decimal) {
@@ -62,13 +73,34 @@ public class MixedNumber extends Fraction {
      * MixedNumber mixedNumber = new MixedNumber(int whole,int num,int den)
      */
     public void add(MixedNumber m) {
-        // this.whole
+        this.add((Fraction) m);
+        this.whole += m.whole;
+        // this.simplify();
     }
 
-    // whole
     public void subtract(MixedNumber m) {
+        this.subtract(m);
+        this.simplify();
         this.whole -= m.whole;
+    }
 
+    public void multiply(MixedNumber m) {
+        this.multiply(m);
+        this.simplify();
+        this.whole *= m.whole;
+    }
+
+    @Override 
+    public void simplify() {
+        if (isWholeNumber()) {
+            if (this.isOne()) {
+                this.whole++;
+            } else {
+                this.whole += this.num;
+            }
+            this.update(new Fraction());
+            return;
+        }
     }
 
     // whole number operations
@@ -78,7 +110,6 @@ public class MixedNumber extends Fraction {
     }
 
     // Adds the whole number beside the fractional part
-    //public MixedNumber 
     @Override
     public String toString() {
         if (isOne()) {
@@ -93,7 +124,7 @@ public class MixedNumber extends Fraction {
     }
 
     public static void main(String[] args) {
-        MixedNumber m = new MixedNumber(20.75);
+        MixedNumber m = new MixedNumber(3, 4);
         System.out.println(m);
     }
 }
