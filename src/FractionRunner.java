@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * @author San Juan, Jean Carlo
+ * @author San Juan, John Rexcel
+ * @author Santos, Johan
+ * @version 5/31/2022
+ * @category Assignment
+ *           {@summary} Runner class for a Fraction
+ * @implNote it is extended to simplify calls
+ */
 public class FractionRunner extends Fraction {
     public static void main(String[] args) {
         if (args.length == 1) {

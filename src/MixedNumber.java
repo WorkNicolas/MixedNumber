@@ -1,10 +1,18 @@
-/* 
- * Requirements:
+/** 
+ * @author San Juan, Jean Carlo
+ * @author Mendoza, Carl Nicolas
+ * @version 9/6/2022
+ * @category Assignment
+ *           {@summary} MixedNumber - an object that represents a number composed of an integer and a fraction. It is created by supplying a whole number, a numerator, and a
+ *           denominator.
+ * 
+ * @implNote 
  * A mixed number can be created with the following data combination.
-    1. 1 number - treated as the whole part, the numerator defaults to 0 and denominator defaults to 1
-    2. 2 numbers - treated as numerator and denominator, hence whole defaults to 0
-    3. 3 numbers - treated as whole, numerator and denominator respectively.
-
+ * <ol>
+ *  <li> number - treated as the whole part, the numerator defaults to 0 and denominator defaults to 1.
+ *  <li> numbers - treated as numerator and denominator, hence whole defaults to 0.
+ *  <li> numbers - treated as whole, numerator and denominator respectively.
+ * </ol>
  */
 public class MixedNumber extends Fraction {
     protected int whole = 0;

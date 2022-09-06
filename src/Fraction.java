@@ -1,5 +1,16 @@
 import java.math.BigInteger;
 
+/**
+ * @author San Juan, Jean Carlo (original)
+ * @author San Juan, John Rexcel (original)
+ * @author Santos, Johan (original)
+ * @author Mendoza, Carl Nicolas (new)
+ * @version 9/6/2022
+ * @category Assignment
+ *           {@summary} Fraction - an object that represents parts of a whole
+ *           number. A fraction is created by supplying a numerator and a
+ *           denominator.
+ */
 public class Fraction {
     protected int num = 0;
     protected int den = 1;
