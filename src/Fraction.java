@@ -320,7 +320,7 @@ public class Fraction {
      * Can't use the static method as it will cause a stackoveflow.
      */
     public void simplify() {
-        int gcd = gcd(this.num, this.den);
+        int gcd = Fraction.gcd(this.num, this.den);
         this.update(
             this.num / gcd,
             this.den / gcd);
