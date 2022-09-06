@@ -39,9 +39,5 @@ public class RequirementsTest {
         assertEquals("7 2/15", mn3.subtract(mn2).toString());
         assertEquals("3 1/5", mn3.multiply(mn1).toString());
         assertEquals("85/192", mn2.divide(mn3).toString());
-        /* assertEquals(new MixedNumber(5, 11, 12), mn1.add(mn2));
-        assertEquals(new MixedNumber(7, 2, 15), mn3.subtract(mn2));
-        assertEquals(new MixedNumber(3, 1, 5), mn3.multiply(mn1));
-        assertEquals(new MixedNumber(0, 85, 192), mn2.divide(mn3)); */
     }
 }
