@@ -40,7 +40,7 @@ public class MixedNumber extends Fraction {
         return (int) decimal;
     }
 
-    private int getWhole(MixedNumber mn) {
+    public int getWhole(MixedNumber mn) {
         return this.whole;
     }
 
@@ -72,25 +72,36 @@ public class MixedNumber extends Fraction {
      * 1 1/2 + 1/2 = 2
      * MixedNumber mixedNumber = new MixedNumber(int whole,int num,int den)
      */
-    public void add(MixedNumber m) {
-        this.add((Fraction) m);
+    public MixedNumber add(MixedNumber m) {
+        super.add(m);
         this.whole += m.whole;
-        // this.simplify();
+        return this;
     }
 
-    public void subtract(MixedNumber m) {
-        this.subtract(m);
-        this.simplify();
+    public MixedNumber subtract(MixedNumber m) {
+        super.subtract(m);
         this.whole -= m.whole;
+        return this;
     }
 
-    public void multiply(MixedNumber m) {
-        this.multiply(m);
-        this.simplify();
+    public MixedNumber multiply(MixedNumber m) {
+        super.multiply(m);
         this.whole *= m.whole;
+        return this;
+    }
+
+    
+    public MixedNumber divide(MixedNumber m) {
+        super.divide(m);
+        if (m.whole != 0)
+            this.whole /= m.whole;
+        return this;
     }
 
     @Override 
+    /* 
+     * Consumes and adds the fractional part to 'whole' when it is interpretable as an integer.
+     */
     public void simplify() {
         if (isWholeNumber()) {
             if (this.isOne()) {
@@ -104,9 +115,9 @@ public class MixedNumber extends Fraction {
     }
 
     // whole number operations
-    public int add(int whole) {
+    public Fraction add(int whole) {
         this.whole += whole;
-        return whole;
+        return this;
     }
 
     // Adds the whole number beside the fractional part
