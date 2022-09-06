@@ -93,7 +93,7 @@ public class ConvertTest {
         assertEquals("7 1/27", a.multiply(b).toString());
     }
     @Test 
-    public void isConvertible() {
+    public void downgrade() {
         var a = new MixedNumber(3,1,3);
         assertEquals("10/3", a.asFraction().toString());
     }
