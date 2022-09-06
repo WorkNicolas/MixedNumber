@@ -49,6 +49,13 @@ public class ConvertTest {
     }
 
     @Test
+    public void shouldSubtractSafely() {
+        var a = new MixedNumber(3, 1,3);
+        var b = new MixedNumber(3, 1,3);
+        a.subtract(b);
+        assertEquals("0", a.toString());
+    }
+    @Test
     public void threeParam(){
         var m1 = new MixedNumber(2, 3, 7);
         var m2 = new MixedNumber(8, 2, 5);
