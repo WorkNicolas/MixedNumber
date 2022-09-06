@@ -27,7 +27,6 @@ public class MixedNumber extends Fraction {
      * Implements #2
      */
     public MixedNumber(Number num, Number den) {
-        super();
         this.update(num.intValue(), den.intValue());
     }
 
@@ -35,8 +34,8 @@ public class MixedNumber extends Fraction {
      * Implements #3
      */
     public MixedNumber(Number whole, Number num, Number den) {
-        this(whole);
-        this.update(num.intValue(), den.intValue());
+        this(num, den);
+        this.whole = whole.intValue();
     }
 
     // get whole number from float
@@ -56,8 +55,8 @@ public class MixedNumber extends Fraction {
     }
 
     public MixedNumber(int whole, Fraction f) {
-        this(f);
-        this.whole = whole;
+        this(whole);
+        this.update(f);
     }
 
     public MixedNumber(Fraction f) {
@@ -82,19 +81,19 @@ public class MixedNumber extends Fraction {
             super.subtract(m)
         );
     }
-
+    public Fraction asFraction() {
+        return new Fraction(whole * den + num, den);
+    }
     public MixedNumber multiply(MixedNumber m) {
-        return new MixedNumber(
-            this.whole * m.whole,
-            super.multiply(m)
-        );
+        var a = this.asFraction();
+        var b = m.asFraction();
+        return new MixedNumber(a.multiply(b));
     }
     
     public MixedNumber divide(MixedNumber m) {
-        return new MixedNumber(
-            m.whole == 0 ? 0:this.whole / m.whole,
-            super.divide(m)
-        );
+        var a = this.asFraction();
+        var b = m.asFraction();
+        return new MixedNumber(a.divide(b));
     }
 
     @Override 
@@ -102,17 +101,16 @@ public class MixedNumber extends Fraction {
      * Consumes and adds the fractional part to 'whole' when it is interpretable as an integer.
      */
     public void simplify() {
-        if (isWholeNumber()) {
-            if (this.isOne()) {
-                this.whole++;
-            } else {
-                this.whole += this.num;
-            }
-            this.update(new Fraction());
-            return;
-        }
+        this.whole += num / den;
+        this.num = num % den;
     }
 
+    @Override
+    public MixedNumber update(int num, int den) {
+        super.update(num, den);
+        this.simplify();
+        return this;
+    }
     // whole number operations
     public Fraction add(int whole) {
         this.whole += whole;

@@ -35,6 +35,13 @@ public class ConvertTest {
     }
 
     @Test
+    public void upgrade() {
+        var a = new Fraction(2, 2);
+        MixedNumber m = new MixedNumber(a);
+        assertEquals("1", m.toString());
+    }
+
+    @Test
     public void threeArgs() {
         MixedNumber m = new MixedNumber(1, 2, 3);
         assertEquals("1 2/3", m.toString());
@@ -78,6 +85,18 @@ public class ConvertTest {
         var a = new MixedNumber(3,1, 3);
         var b = new MixedNumber(3,1, 3);
         assertEquals("11 1/9", a.multiply(b).toString());
+    }
+
+    @Test 
+    public void isConvertible() {
+        var a = new MixedNumber(3,1,3);
+        assertEquals("10/3", a.asFraction().toString());
+    }
+
+    @Test 
+    public void fractionSimplifies() {
+        var a = new Fraction(9, 3);
+        assertEquals("3", a.toString());
     }
 
     @Test
