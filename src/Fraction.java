@@ -282,33 +282,34 @@ public class Fraction {
     }
 
     // Operations
-    public void add(Fraction f) {
-        this.update(add(this, f));
+    public Fraction add(Fraction f) {
+        return this.update(add(this, f));
     }
 
-    public void subtract(Fraction f) {
-        this.update(subtract(this, f));
+    public Fraction subtract(Fraction f) {
+        return this.update(subtract(this, f));
     }
 
-    public void multiply(Fraction f) {
-        this.update(multiply(this, f));
+    public Fraction multiply(Fraction f) {
+        return this.update(multiply(this, f));
     }
 
-    public void divide(Fraction f) {
-        this.multiply(f.reciprocal());
+    public Fraction divide(Fraction f) {
+        return this.multiply(f.reciprocal());
     }
 
     public Fraction reciprocal() {
         return new Fraction(this.den, this.num);
     }
 
-    protected void update(int num, int den) {
+    protected Fraction update(int num, int den) {
         setNumerator(num);
         setDenominator(den);
+        return this;
     }
 
-    protected void update(Fraction f) {
-        this.update(f.num, f.den);
+    protected Fraction update(Fraction f) {
+        return this.update(f.num, f.den);
     }
 
     /**
