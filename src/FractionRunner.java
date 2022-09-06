@@ -105,7 +105,7 @@ public class FractionRunner extends Fraction {
         Fraction fraction1 = new Fraction(1, 2);
         Fraction fraction2 = new Fraction(c, d);
         Fraction fractionSum = Fraction.add(fraction1, fraction2); // creates 5/4.
-        Fraction fractionDifference = Fraction.subtract(fraction1, fraction2); // creates 1/4.
+        Fraction fractionDifference = Fraction.subtract(fraction1, fraction2); // creates -1/4.
         Fraction fractionProduct = Fraction.multiply(fraction1, fraction2); // creates 3/8.
         Fraction fractionQuotient = Fraction.divide(fraction1, fraction2); // creates 2/3.
 
