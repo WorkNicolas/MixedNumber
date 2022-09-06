@@ -1,8 +1,4 @@
 /* 
- * 
- * Issues: 
- * Convert decimal to Fraction
- * When the fraction can be interpreted as a whole number, its value should be moved to the 'whole' field.
  * Requirements:
  * A mixed number can be created with the following data combination.
     1. 1 number - treated as the whole part, the numerator defaults to 0 and denominator defaults to 1
@@ -120,10 +116,8 @@ public class MixedNumber extends Fraction {
     // Adds the whole number beside the fractional part
     @Override
     public String toString() {
-        if (isOne()) {
-            return "" + (whole + 1);
-        } else if (isWholeNumber()) {
-            return "" + (whole + num);
+        if (isWholeNumber()) {
+            return "" + (whole + num / den);
         }
         if (whole == 0) {
             return super.toString();
