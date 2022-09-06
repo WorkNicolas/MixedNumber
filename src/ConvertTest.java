@@ -70,6 +70,14 @@ public class ConvertTest {
         a.multiply(b);
         assertEquals("3/16", a.toString());
     }
+
+    @Test
+    public void shouldMultiplyMixedAndZero() {
+        var a = new MixedNumber(0);
+        var b = new MixedNumber(1,2,3);
+        a.multiply(b);
+        assertEquals("0", a.toString());
+    }
     @Test
     public void shouldMultiplyMixed() {
         var a = new MixedNumber(3,1, 3);
