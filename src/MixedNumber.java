@@ -9,14 +9,12 @@
     2. 2 numbers - treated as numerator and denominator, hence whole defaults to 0
     3. 3 numbers - treated as whole, numerator and denominator respectively.
 
-
-    Convert
  */
 public class MixedNumber extends Fraction {
     protected int whole = 0;
 
     /*
-     * #1
+     * Implements #1
      */
     public MixedNumber(Number w) {
         this.whole = w.intValue();
@@ -25,11 +23,17 @@ public class MixedNumber extends Fraction {
         this.update(f);
     }
 
+    /*
+     * Implements #2
+     */
     public MixedNumber(Number num, Number den) {
         super();
         this.update(num.intValue(), den.intValue());
     }
 
+    /*
+     * Implements #3
+     */
     public MixedNumber(Number whole, Number num, Number den) {
         this(whole);
         this.add(new Fraction(num.intValue(), den.intValue()));
@@ -43,13 +47,6 @@ public class MixedNumber extends Fraction {
     public int getWhole(MixedNumber mn) {
         return this.whole;
     }
-
-    // get num and den from mn
-    /*
-     * private int getNum(MixedNumber m) {
-     * 
-     * }
-     */
 
     // Decimal to Fraction
     public Fraction decimalToFraction(float decimal) {
@@ -89,7 +86,6 @@ public class MixedNumber extends Fraction {
         this.whole *= m.whole;
         return this;
     }
-
     
     public MixedNumber divide(MixedNumber m) {
         super.divide(m);
@@ -135,7 +131,7 @@ public class MixedNumber extends Fraction {
     }
 
     public static void main(String[] args) {
-        MixedNumber m = new MixedNumber(3, 4);
+        MixedNumber m = new MixedNumber(0.3);
         System.out.println(m);
     }
 }
