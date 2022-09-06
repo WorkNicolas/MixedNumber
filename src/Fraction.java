@@ -6,8 +6,7 @@ import java.math.BigInteger;
  * @author Santos, Johan (original)
  * @author Mendoza, Carl Nicolas (new)
  * @version 9/6/2022
- * @category Assignment
- *           {@summary} Fraction - an object that represents parts of a whole
+ * @summary Fraction - an object that represents parts of a whole
  *           number. A fraction is created by supplying a numerator and a
  *           denominator.
  */

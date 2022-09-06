@@ -2,8 +2,7 @@
  * @author San Juan, Jean Carlo
  * @author Mendoza, Carl Nicolas
  * @version 9/6/2022
- * @category Assignment
- *           {@summary} MixedNumber - an object that represents a number composed of an integer and a fraction. It is created by supplying a whole number, a numerator, and a
+ * @summary MixedNumber - an object that represents a number composed of an integer and a fraction. It is created by supplying a whole number, a numerator, and a
  *           denominator.
  * 
  * @implNote 
