@@ -36,7 +36,7 @@ public class MixedNumber extends Fraction {
      */
     public MixedNumber(Number whole, Number num, Number den) {
         this(whole);
-        this.add(new Fraction(num.intValue(), den.intValue()));
+        this.update(num.intValue(), den.intValue());
     }
 
     // get whole number from float
@@ -55,13 +55,13 @@ public class MixedNumber extends Fraction {
         return new Fraction(d, 100);
     }
 
-    // MixedNumber
     public MixedNumber(int whole, Fraction f) {
         this(f);
+        this.whole = whole;
     }
 
     public MixedNumber(Fraction f) {
-        this.update(f.den, f.num);
+        this.update(f.num, f.den);
     }
 
     // With fractions
@@ -70,28 +70,31 @@ public class MixedNumber extends Fraction {
      * MixedNumber mixedNumber = new MixedNumber(int whole,int num,int den)
      */
     public MixedNumber add(MixedNumber m) {
-        super.add(m);
-        this.whole += m.whole;
-        return this;
+        return new MixedNumber(
+            this.whole + m.whole,
+            super.add(m)
+        );
     }
 
     public MixedNumber subtract(MixedNumber m) {
-        super.subtract(m);
-        this.whole -= m.whole;
-        return this;
+        return new MixedNumber(
+            this.whole - m.whole,
+            super.subtract(m)
+        );
     }
 
     public MixedNumber multiply(MixedNumber m) {
-        super.multiply(m);
-        this.whole *= m.whole;
-        return this;
+        return new MixedNumber(
+            this.whole * m.whole,
+            super.multiply(m)
+        );
     }
     
     public MixedNumber divide(MixedNumber m) {
-        super.divide(m);
-        if (m.whole != 0)
-            this.whole /= m.whole;
-        return this;
+        return new MixedNumber(
+            m.whole == 0 ? 0:this.whole / m.whole,
+            super.divide(m)
+        );
     }
 
     @Override 

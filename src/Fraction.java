@@ -283,15 +283,15 @@ public class Fraction {
 
     // Operations
     public Fraction add(Fraction f) {
-        return this.update(add(this, f));
+        return add(this, f);
     }
 
     public Fraction subtract(Fraction f) {
-        return this.update(subtract(this, f));
+        return subtract(this, f);
     }
 
     public Fraction multiply(Fraction f) {
-        return this.update(multiply(this, f));
+        return multiply(this, f);
     }
 
     public Fraction divide(Fraction f) {
@@ -302,6 +302,9 @@ public class Fraction {
         return new Fraction(this.den, this.num);
     }
 
+    /* 
+     * Mutates itself
+     */
     protected Fraction update(int num, int den) {
         setNumerator(num);
         setDenominator(den);

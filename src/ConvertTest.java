@@ -44,69 +44,60 @@ public class ConvertTest {
     public void shouldAddAndSimplify() {
         var a = new MixedNumber(3, 4);
         var b = new MixedNumber(1, 4);
-        a.add(b);
-        assertEquals("1", a.toString());
+        assertEquals("1", a.add(b) .toString());
     }
 
     @Test
     public void shouldSubtractSafely() {
         var a = new MixedNumber(3, 1,3);
         var b = new MixedNumber(3, 1,3);
-        a.subtract(b);
-        assertEquals("0", a.toString());
+        assertEquals("0", a.subtract(b) .toString());
     }
     @Test
     public void threeParam(){
-        var m1 = new MixedNumber(2, 3, 7);
-        var m2 = new MixedNumber(8, 2, 5);
-        m1.add(m2);
-        assertEquals("10 29/35", m1.toString());
+        var a = new MixedNumber(2, 3, 7);
+        var b = new MixedNumber(8, 2, 5);
+        assertEquals("10 29/35", a.add(b).toString());
     }
 
     @Test
     public void shouldMultiply() {
         var a = new MixedNumber(3, 4);
         var b = new MixedNumber(1, 4);
-        a.multiply(b);
-        assertEquals("3/16", a.toString());
+        assertEquals("3/16", a.multiply(b).toString());
     }
 
     @Test
     public void shouldMultiplyMixedAndZero() {
         var a = new MixedNumber(0);
         var b = new MixedNumber(1,2,3);
-        a.multiply(b);
-        assertEquals("0", a.toString());
+        assertEquals("0", a.multiply(b).toString());
     }
     @Test
     public void shouldMultiplyMixed() {
         var a = new MixedNumber(3,1, 3);
         var b = new MixedNumber(3,1, 3);
-        a.multiply(b);
-        assertEquals("9 1/9", a.toString());
+        assertEquals("11 1/9", a.multiply(b).toString());
     }
 
     @Test
     public void shouldMultiplyAndSimplify() {
         var a = new MixedNumber(2, 1);
         var b = new MixedNumber(1, 2);
-        a.multiply(b);
-        assertEquals("1", a.toString());
+        assertEquals("1", a.multiply(b).toString());
     }
 
     @Test
     public void shouldDivide() {
         var a = new MixedNumber(1, 2);
         var b = new MixedNumber(1, 2);
-        a.divide(b);
-        assertEquals("1", a.toString());
+        assertEquals("1", a.divide(b).toString());
     }
 
     @Test
     public void shouldDivideAndSimplify() {
         var a = new MixedNumber(2, 1);
         var b = new MixedNumber(1, 2);
-        a.divide(b);
-        assertEquals("4", a.toString());
+        assertEquals("4", a.divide(b).toString());
     }
 }
