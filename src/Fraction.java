@@ -112,7 +112,7 @@ public class Fraction {
     }
 
     public static Fraction simplify(Fraction f) {
-        int gcd = BigInteger.valueOf(f.num).gcd(BigInteger.valueOf(f.den)).intValue();
+        int gcd = gcd(f.num, f.den);
         int num = f.num / gcd;
         int den = f.den / gcd;
         return new Fraction(num, den);
@@ -320,12 +320,15 @@ public class Fraction {
      * Can't use the static method as it will cause a stackoveflow.
      */
     public void simplify() {
-        int gcd = BigInteger.valueOf(this.num).gcd(BigInteger.valueOf(this.den)).intValue();
+        int gcd = gcd(this.num, this.den);
         this.update(
-                this.num / gcd,
-                this.den / gcd);
+            this.num / gcd,
+            this.den / gcd);
     }
 
+    public static int gcd(int a, int b) {
+        return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).intValue();
+    }
     public boolean isOne() {
         return num == den;
     }
