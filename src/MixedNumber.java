@@ -30,8 +30,8 @@ public class MixedNumber extends Fraction {
      * Implements #3
      */
     public MixedNumber(Number whole, Number num, Number den) {
-        this(num, den);
-        this.whole = whole.intValue();
+        this(whole);
+        this.update(num.intValue(), den.intValue());
     }
 
     // get whole number from float
@@ -97,8 +97,11 @@ public class MixedNumber extends Fraction {
      * Consumes and adds the fractional part to 'whole' when it is interpretable as an integer.
      */
     public void simplify() {
-        this.whole += num / den;
-        this.num = num % den;
+        this.whole += num / den; //consume numerator via integer div
+        int n = num % den; // store remainder
+        int gcd = Fraction.gcd(n, den);
+        setDenominator(den / gcd);  
+        setNumerator(n / gcd);  
     }
 
     @Override

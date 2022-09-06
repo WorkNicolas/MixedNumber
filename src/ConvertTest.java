@@ -83,10 +83,15 @@ public class ConvertTest {
     @Test
     public void shouldMultiplyMixed() {
         var a = new MixedNumber(3,1, 3);
-        var b = new MixedNumber(3,1, 3);
+        var b = new MixedNumber(3,9, 27);
         assertEquals("11 1/9", a.multiply(b).toString());
     }
-
+    @Test
+    public void shouldMultiplyMixes() {
+        var a = new MixedNumber(3,1, 3);
+        var b = new MixedNumber(2,3, 27);
+        assertEquals("7 1/27", a.multiply(b).toString());
+    }
     @Test 
     public void isConvertible() {
         var a = new MixedNumber(3,1,3);
