@@ -50,7 +50,7 @@ public class MixedNumber extends Fraction {
     }
 
     // Decimal to Fraction
-    public Fraction decimalToFraction(float decimal) {
+    public static Fraction decimalToFraction(float decimal) {
         int w = asInt(decimal);
         int d = (int) ((decimal - w) * 100);
         return new Fraction(d, 100);
