@@ -4,13 +4,6 @@ import org.junit.Test;
 
 public class RequirementsTest {
     @Test
-    /*
-     * Examples for initialization
-     * denominator = 4
-     * 2, denominator = 3
-     * 3. mn3 = new MixedNumber<Double>(11d, 18d, 10d) results into whole = 12,
-     * numerator = 4, denominator = 5
-     */
     public void fromFloat() {
         var mn1 = new MixedNumber(0.25f);
         assertEquals("1/4", mn1.toString());
@@ -31,6 +24,12 @@ public class RequirementsTest {
     }
 
     /**
+     * 1. mn1 = new MixedNumber<Float>(0.25f) results into whole = 0, numerator = 1,
+     * denominator = 4
+     * 2. mn2 = new MixedNumber<Long>(34l, 6l) results into whole = 5, numerator =
+     * 2, denominator = 3
+     * 3. mn3 = new MixedNumber<Double>(11d, 18d, 10d) results into whole = 12,
+     * numerator = 4, denominator = 5
      * Operations Example
      * mn1 + mn2 = MixedNumber(whole = 5, numerator = 11, denominator = 12)
      * mn3 - mn2 = MixedNumber(whole = 7, numerator = 2, denominator = 15)
