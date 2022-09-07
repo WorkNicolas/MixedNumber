@@ -112,6 +112,17 @@ public class MixedNumber extends Fraction {
         return this.add(new MixedNumber(w));
     }
 
+    public MixedNumber subtract(Number w) {
+        return this.subtract(new MixedNumber(w));
+    }
+    public MixedNumber multiply(Number w) {
+        return this.multiply(new MixedNumber(w));
+    }
+
+    public MixedNumber divide(Number w) {
+        return this.divide(new MixedNumber(w));
+    }
+
     // Adds the whole number beside the fractional part
     @Override
     public String toString() {
