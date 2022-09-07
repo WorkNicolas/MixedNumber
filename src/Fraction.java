@@ -106,16 +106,16 @@ public class Fraction {
 
     // Getters
     public int getNumerator() {
-        return this.num;
+        return num;
     }
 
     public int getDenominator() {
-        return this.den;
+        return den;
     }
 
     // Setters
     protected void setNumerator(int n) {
-        this.num = n;
+        num = n;
     }
 
     /**
@@ -131,18 +131,18 @@ public class Fraction {
 
         if (n < 0) {
             setNumerator(
-                    this.num * -1);
+                    num * -1);
             n *= -1;
         }
 
-        this.den = n;
+        den = n;
     }
 
     // Outputs
     public String toString() {
         if (den == 0) {
             return "undefined";
-        } else if (this.isWholeNumber()) {
+        } else if (isWholeNumber()) {
             return "" + (num / den);
         }
         return num + "/" + den;
@@ -162,11 +162,11 @@ public class Fraction {
     }
 
     public Fraction divide(Fraction f) {
-        return this.multiply(f.reciprocal());
+        return multiply(f.reciprocal());
     }
 
     public Fraction reciprocal() {
-        return new Fraction(this.den, this.num);
+        return new Fraction(den, num);
     }
 
     /* 
@@ -179,7 +179,7 @@ public class Fraction {
     }
 
     protected Fraction update(Fraction f) {
-        return this.update(f.num, f.den);
+        return update(f.num, f.den);
     }
 
     /**
@@ -187,10 +187,10 @@ public class Fraction {
      * Can't use the static method as it will cause a stackoveflow.
      */
     public void simplify() {
-        int gcd = Fraction.gcd(this.num, this.den);
+        int gcd = Fraction.gcd(num, den);
         this.update(
-            this.num / gcd,
-            this.den / gcd);
+            num / gcd,
+            den / gcd);
     }
 
     public static int gcd(int a, int b) {
