@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * @author Mariano, Charimel
+ * @author Mendoza, Carl Nicolas
  */
 public class FractionConverter extends JFrame {
 
