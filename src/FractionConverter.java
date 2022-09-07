@@ -71,11 +71,17 @@ public class FractionConverter extends JFrame {
 		btnNewButton = new JButton("Convert");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String lblNum = txtNumerator.getText();
-				lblNumerator.setText(lblNum);
-				lblSlash.setVisible(true);
-				String lblDen = txtDenominator.getText();
-				lblDenominator.setText(lblDen);
+				try {
+					MixedNumber mn = new MixedNumber(Double.parseDouble(txtNumerator.getText()),
+							Double.parseDouble(txtDenominator.getText()));
+					lblNumerator.setText(mn.toString());
+				} catch (NullPointerException npe) {
+					lblNumerator.setText("");
+				} catch (NumberFormatException nfe) {
+					lblNumerator.setText("");
+				} catch (ArithmeticException ae) {
+					lblNumerator.setText("");
+				}
 			}
 		});
 		contentPane.add(btnNewButton);
