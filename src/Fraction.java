@@ -196,11 +196,14 @@ public class Fraction {
     public static int gcd(int a, int b) {
         return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).intValue();
     }
-    public boolean isOne() {
-        return num == den;
-    }
 
     public boolean isWholeNumber() {
         return num % den == 0;
+    }
+
+    public static Fraction valueOf(Number n) {
+        int w = n.intValue();
+        int d = (int) ((n.floatValue() - w) * 100);
+        return new Fraction(d, 100);
     }
 }

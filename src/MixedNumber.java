@@ -22,7 +22,7 @@ public class MixedNumber extends Fraction {
     public MixedNumber(Number w) {
         this.whole = w.intValue();
         float decimal = w.floatValue() - whole;
-        this.update(decimalToFraction(decimal));
+        this.update(valueOf(decimal));
     }
 
     /*
@@ -39,20 +39,8 @@ public class MixedNumber extends Fraction {
         this(whole, new Fraction(num, den));
     }
 
-    // get int from anything that extends Number;
-    protected static int asInt(Number n) {
-        return n.intValue();
-    }
-    
     public int getWhole() {
         return this.whole;
-    }
-
-    // Decimal to Fraction
-    public static Fraction decimalToFraction(float decimal) {
-        int w = asInt(decimal);
-        int d = (int) ((decimal - w) * 100);
-        return new Fraction(d, 100);
     }
 
     public MixedNumber(Number whole, Fraction f) {
