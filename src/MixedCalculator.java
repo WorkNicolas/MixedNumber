@@ -3,8 +3,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
-import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -90,7 +88,7 @@ public class MixedCalculator extends JFrame {
 		fraction2Den = new Input(224, 91, 50, 50);
 		pane.add(fraction2Den);
 
-		JToggleButton calculate = new JToggleButton("CALCULATE");
+		JButton calculate = new JButton("CALCULATE");
 		calculate.setBounds(311, 122, 114, 29);
 		pane.add(calculate);
 		calculate.addActionListener(new ActionListener() {
@@ -136,10 +134,6 @@ public class MixedCalculator extends JFrame {
 		
 		JButton buttonAdd = new JButton("+");
 		buttonAdd.setFont(new Font("Tahoma", Font.PLAIN, 36));
-		buttonAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		buttonAdd.setBounds(10, 152, 68, 50);
 		pane.add(buttonAdd);
 		buttonAdd.addActionListener(new ActionListener() {
