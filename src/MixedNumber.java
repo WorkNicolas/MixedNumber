@@ -14,7 +14,7 @@
  * </ol>
  */
 public class MixedNumber extends Fraction {
-    protected int whole = 0;
+    protected int whole;
 
     /*
      * Implements #1
@@ -29,15 +29,14 @@ public class MixedNumber extends Fraction {
      * Implements #2
      */
     public MixedNumber(Number num, Number den) {
-        this.update(num.intValue(), den.intValue());
+        super(num.intValue(), den.intValue());
     }
 
     /*
      * Implements #3
      */
     public MixedNumber(Number whole, Number num, Number den) {
-        this(whole);
-        this.update(num.intValue(), den.intValue());
+        this(whole, new Fraction(num, den));
     }
 
     // get int from anything that extends Number;
@@ -56,9 +55,9 @@ public class MixedNumber extends Fraction {
         return new Fraction(d, 100);
     }
 
-    public MixedNumber(int whole, Fraction f) {
+    public MixedNumber(Number whole, Fraction f) {
         this(whole);
-        this.update(f);
+        this.update(this.add(f));
     }
 
     public MixedNumber(Fraction f) {
@@ -98,6 +97,10 @@ public class MixedNumber extends Fraction {
         return new MixedNumber(a.divide(b));
     }
 
+    public void update(MixedNumber m) {
+        super.update(m);
+        this.whole = m.whole;
+    }
     @Override 
     /* 
      * Consumes and adds the fractional part to 'whole' when it is interpretable as an integer.
@@ -117,9 +120,8 @@ public class MixedNumber extends Fraction {
         return this;
     }
     // whole number operations
-    public Fraction add(int whole) {
-        this.whole += whole;
-        return this;
+    public MixedNumber add(Number w) {
+        return this.add(new MixedNumber(w));
     }
 
     // Adds the whole number beside the fractional part

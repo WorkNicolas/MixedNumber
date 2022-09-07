@@ -48,6 +48,15 @@ public class ConvertTest {
     }
 
     @Test
+    public void shouldInstatiateWithDifferentArgTypes() {
+        var a = new MixedNumber(0.25d, 2f, 1);
+        var b = new MixedNumber(1.5f, 2d, 1);
+        assertEquals("2 1/4", a.toString());
+        assertEquals("3 1/2", b.toString());
+        assertEquals("5 3/4", a.add(b).toString());
+    }
+
+    @Test
     public void shouldAddAndSimplify() {
         var a = new MixedNumber(3, 4);
         var b = new MixedNumber(1, 4);
@@ -124,4 +133,6 @@ public class ConvertTest {
         var b = new MixedNumber(1, 2);
         assertEquals("4", a.divide(b).toString());
     }
+
+
 }
