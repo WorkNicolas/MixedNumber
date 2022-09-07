@@ -37,6 +37,14 @@ public class MixedCalculator extends JFrame {
 		DIVIDE,
 		MULTIPLY
 	}
+
+	private ActionListener listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			op = OPS.valueOf(e.getActionCommand());
+		}
+	};
+
 	private OPS op = OPS.ADD;
 	/**
 	 * Launch the application.
@@ -135,43 +143,31 @@ public class MixedCalculator extends JFrame {
 		JButton buttonAdd = new JButton("+");
 		buttonAdd.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		buttonAdd.setBounds(10, 152, 68, 50);
+		buttonAdd.setActionCommand("" + OPS.ADD);
+		buttonAdd.addActionListener(listener);
 		pane.add(buttonAdd);
-		buttonAdd.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				op = OPS.ADD;
-			}
-		});
+
 		buttonSubtract = new JButton("-");
 		buttonSubtract.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		buttonSubtract.setBounds(80, 152, 68, 50);
+		buttonSubtract.setActionCommand("" + OPS.SUBTRACT);
+		buttonSubtract.addActionListener(listener);
 		pane.add(buttonSubtract);
-		buttonSubtract.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				op = OPS.SUBTRACT;
-			}
-		});
+
 		buttonMultiply = new JButton("*");
 		buttonMultiply.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		buttonMultiply.setBounds(150, 152, 68, 50);
+		buttonMultiply.setActionCommand("" + OPS.MULTIPLY);
+		buttonMultiply.addActionListener(listener);
 		pane.add(buttonMultiply);
-		buttonMultiply.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				op = OPS.MULTIPLY;
-			}
-		});
+
 		buttonDivide = new JButton("/");
 		buttonDivide.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		buttonDivide.setBounds(220, 152, 68, 50);
+		buttonDivide.setActionCommand("" + OPS.DIVIDE);
+		buttonDivide.addActionListener(listener);
 		pane.add(buttonDivide);
-		buttonDivide.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				op = OPS.DIVIDE;
-			}
-		});
+
 		lblNewLabel_1 = new JLabel("First Fraction:");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
