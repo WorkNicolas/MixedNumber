@@ -6,24 +6,24 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
 /**
  * @author Mariano, Charimel
  * @author Mendoza, Carl Nicolas
  */
-public class FractionConverter extends JFrame {
+public class FractionConverter extends JFrame implements ActionListener {
 
-	private JPanel contentPane;
-	private JLabel lblNewLabel;
-	private JTextField txtNumerator;
-	private JTextField txtDenominator;
-	private JLabel lblResult;
-	private JLabel lblNumerator;
-	private JLabel lblDenominator;
-	private JButton btnNewButton;
-	private JLabel lblSlash;
-	
-	Fraction F = new Fraction();
+	private JPanel lower = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+	private JPanel upper = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+	private JLabel lblNewLabel = new JLabel("/");
+	private JTextField txtNumerator = new JTextField("");
+	private JTextField txtDenominator = new JTextField();
+	private String resultText = "Result:";
+	private JLabel lblFraction = new JLabel("");
+	private JLabel lblResult = new JLabel(resultText);
+	private JButton convertNumber = new JButton("Convert");
+	private JButton convertImproper = new JButton("Convert");
+	private JTextField number = new JTextField();;
+	private JLabel lblNumber = new JLabel("Number:");
 
 	/**
 	 * Launch the application.
@@ -48,59 +48,59 @@ public class FractionConverter extends JFrame {
 		setResizable(false);
 		setTitle("Mixed Fraction Converter");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 390, 147);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		txtNumerator = new JTextField("");
+		setBounds(100, 100, 400, 170);
+		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+		add(upper);
+		add(lower);
+		lower.setBorder(new EmptyBorder(5, 5, 5, 5));
+		number.setMargin(new Insets(5, 5, 5, 5));
+		number.setColumns(10);
+		upper.add(lblNumber);
+		upper.add(number);
+		convertNumber.addActionListener(this);
+		upper.add(convertNumber);
 		txtNumerator.setMargin(new Insets(5, 5, 5, 5));
 		txtNumerator.setColumns(10);
-		contentPane.add(txtNumerator);
-		
-		lblNewLabel = new JLabel("/");
+		lower.add(txtNumerator);
+
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		contentPane.add(lblNewLabel);
-		
-		txtDenominator = new JTextField();
+		lower.add(lblNewLabel);
+
 		txtDenominator.setMargin(new Insets(5, 5, 5, 5));
 		txtDenominator.setColumns(10);
-		contentPane.add(txtDenominator);
-		
-		btnNewButton = new JButton("Convert");
-		btnNewButton.addActionListener(new ActionListener() {
+		lower.add(txtDenominator);
+
+		convertImproper.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					MixedNumber mn = new MixedNumber(Double.parseDouble(txtNumerator.getText()),
 							Double.parseDouble(txtDenominator.getText()));
-					lblNumerator.setText(mn.toString());
+					lblFraction.setText(mn.toString());
 				} catch (NullPointerException npe) {
-					lblNumerator.setText("");
+					lblFraction.setText("");
 				} catch (NumberFormatException nfe) {
-					lblNumerator.setText("");
+					lblFraction.setText("");
 				} catch (ArithmeticException ae) {
-					lblNumerator.setText("");
+					lblFraction.setText("");
 				}
 			}
 		});
-		contentPane.add(btnNewButton);
-		
-		lblResult = new JLabel("Result:");
-		lblResult.setPreferredSize(new Dimension(40, 20));
-		contentPane.add(lblResult);
-		
-		lblNumerator = new JLabel("");
-		contentPane.add(lblNumerator);
-		
-		lblSlash = new JLabel("/");
-		contentPane.add(lblSlash);
-		lblSlash.setVisible(false);
-		
-		
-		lblDenominator = new JLabel("");
-		contentPane.add(lblDenominator);
+		lower.add(convertImproper);
+		lblFraction.setPreferredSize(new Dimension(40, 20));
+		lower.add(lblResult);
+		lower.add(lblFraction);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		double d = 0;
+		try {
+			d = Double.parseDouble(number.getText());
+
+		} catch (Exception ex) {
+			return;
+		}
+		var m = new MixedNumber(d);
+		lblFraction.setText(m.toString());
+	}
 }
