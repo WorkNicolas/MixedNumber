@@ -4,13 +4,13 @@ import org.junit.Test;
 
 public class RequirementsTest {
     @Test
-        /*
-         * Examples for initialization
-         * denominator = 4
-         * 2, denominator = 3
-         * 3. mn3 = new MixedNumber<Double>(11d, 18d, 10d) results into whole = 12,
-         * numerator = 4, denominator = 5
-         */
+    /*
+     * Examples for initialization
+     * denominator = 4
+     * 2, denominator = 3
+     * 3. mn3 = new MixedNumber<Double>(11d, 18d, 10d) results into whole = 12,
+     * numerator = 4, denominator = 5
+     */
     public void fromFloat() {
         var mn1 = new MixedNumber(0.25f);
         assertEquals("1/4", mn1.toString());
@@ -21,6 +21,7 @@ public class RequirementsTest {
         var mn2 = new MixedNumber(34l, 6l);
         assertEquals("5 2/3", mn2.toString());
     }
+
     @Test
     public void fromDoubles() {
         var mn3 = new MixedNumber(11d, 18d, 10d);
@@ -29,12 +30,19 @@ public class RequirementsTest {
         assertEquals("12 4/5", mn3.toString());
     }
 
+    /**
+     * Operations Example
+     * mn1 + mn2 = MixedNumber(whole = 5, numerator = 11, denominator = 12)
+     * mn3 - mn2 = MixedNumber(whole = 7, numerator = 2, denominator = 15)
+     * mn3 * mn1 = MixedNumber(whole = 3, numerator = 1, denominator = 5)
+     * mn2 / mn3 = MixedNumber(whole = 0, numerator = 85, denominator = 192)
+     */
     @Test
     public void canvas() {
         var mn1 = new MixedNumber(0.25f);
         var mn2 = new MixedNumber(34l, 6l);
         var mn3 = new MixedNumber(11d, 18d, 10d);
-        
+
         assertEquals("5 11/12", mn1.add(mn2).toString());
         assertEquals("7 2/15", mn3.subtract(mn2).toString());
         assertEquals("3 1/5", mn3.multiply(mn1).toString());
